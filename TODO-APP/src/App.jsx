@@ -22,6 +22,7 @@ function App() {
       <div className="app-container w-full h-[100vh] bg-primary-bg">
         <TaskDashboard tasks={tasks} />
         <TaskAdditionForm task={task} setTask={setTask} setTasks={setTasks} />
+        
       </div>
     </>
   );

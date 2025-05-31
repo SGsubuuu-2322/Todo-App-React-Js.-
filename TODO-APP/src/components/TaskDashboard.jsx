@@ -1,4 +1,5 @@
 import React from "react";
+import TaskDetailBox from "./TaskDetailBox";
 
 const TaskDashboard = ({ tasks }) => {
   const overdueCount = tasks?.filter((task) => {
@@ -13,24 +14,18 @@ const TaskDashboard = ({ tasks }) => {
   }).length;
   return (
     <>
-      <div className="dashboard-container w-full p-3">
-        <div className="dashboard-wrapper p-2 flex justify-center items-center gap-2 mt-5">
-          <div className="task-details-box bg-secondary-bg w-[10rem] flex flex-col items-center justify-center shadow-xl/30 shadow-border-shadow rounded-3xl py-2">
-            {tasks?.length}
-            <span>Total Tasks</span>
-          </div>
-          <div className="task-details-box bg-secondary-bg w-[10rem] flex flex-col items-center justify-center shadow-xl/30 shadow-border-shadow rounded-3xl py-2">
-            {tasks?.filter((task) => task.completion == true).length}
-            <span>Completed</span>
-          </div>
-          <div className="task-details-box bg-secondary-bg w-[10rem] flex flex-col items-center justify-center shadow-xl/30 shadow-border-shadow rounded-3xl py-2">
-            {tasks?.filter((task) => task.completion != true).length}
-            <span>Pending</span>
-          </div>
-          <div className="task-details-box bg-secondary-bg w-[10rem] flex flex-col items-center justify-center shadow-xl/30 shadow-border-shadow rounded-3xl py-2">
-            {overdueCount}
-            <span>Overdue</span>
-          </div>
+      <div className="dashboard-container w-full p-3 mb-2">
+        <div className="dashboard-wrapper p-2 flex justify-center items-center gap-3 mt-5">
+          <TaskDetailBox property={"Total Tasks"} value={tasks?.length} />
+          <TaskDetailBox
+            property={"Completed"}
+            value={tasks?.filter((task) => task.completion == true).length}
+          />
+          <TaskDetailBox
+            property={"Pending"}
+            value={tasks?.filter((task) => task.completion != true).length}
+          />
+          <TaskDetailBox property={"Overdue"} value={overdueCount} />
         </div>
       </div>
     </>
