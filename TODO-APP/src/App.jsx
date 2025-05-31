@@ -1,12 +1,27 @@
+import { useState } from "react";
 import "./App.css";
+import TaskAdditionForm from "./components/TaskAdditionForm";
+import TaskDashboard from "./components/TaskDashboard";
 
 function App() {
+  const [task, setTask] = useState({
+    taskInput: "",
+    completion: false,
+    taskPriority: "low",
+    taskCategory: "personal",
+    taskDueDate: "",
+  });
+
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   return (
     <>
-      <div className="w-full h-[100vh] bg-primary-bg flex items-center justify-center">
-        <p className="read-the-docs bg-secondary-bg text-primary-text inline-block w-[200px] rounded-2xl p-2.5 cursor-pointer active:scale-105 duration-300">
-          Click on the Vite and React logos to learn more
-        </p>
+      <div className="app-container w-full h-[100vh] bg-primary-bg">
+        <TaskDashboard tasks={tasks} />
+        <TaskAdditionForm task={task} setTask={setTask} setTasks={setTasks} />
       </div>
     </>
   );
