@@ -3,7 +3,6 @@ import React from "react";
 const TaskAdditionForm = ({ task, setTask, setTasks }) => {
   const inputHandler = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const isTodayOrFuture = (inputDateStr) => {
@@ -33,6 +32,7 @@ const TaskAdditionForm = ({ task, setTask, setTasks }) => {
     setTasks(updatedTasks);
 
     setTask({
+      taskId: crypto.randomUUID(),
       taskInput: "",
       completion: false,
       taskPriority: "low",
