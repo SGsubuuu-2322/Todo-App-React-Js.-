@@ -41,7 +41,13 @@ const TaskDisplayBoard = ({ tasks, setTasks }) => {
                       {task?.completion && <Check size={16} />}
                     </button>
                   </span>
-                  <span className="task-name">{task.taskInput}</span>
+                  <span
+                    className={`task-name ${
+                      task?.completion ? "line-through" : ""
+                    }`}
+                  >
+                    {task.taskInput}
+                  </span>
                 </div>
                 <div className="task-edit-btns">
                   <span className="delete-btn flex items-center justify-center">
